@@ -1,52 +1,30 @@
 import http from "http";
 import readFileFunc from "./readfile.js";
+import { readFileSync } from "fs";
 
-const mediaArray = [".png", ".jpg", ".webp", ".svg", ".mp4"];
+const errorPage = readFileSync("./pages/error.html");
 
 const server = http.createServer((request, response) => {
   console.log("new request:", request.method, request.url);
 
-  const imgPath = request.url.slice(1);
   const filePath =
     request.url === "/" || request.url === "/home"
-      ? "index.html"
-      : `${request.url.slice(1)}.html`;
+      ? "pages/index.html"
+      : request.url.slice(1);
 
-  if (mediaArray.some((test) => request.url.includes(test))) {
-    readFileFunc(imgPath).then((dataBuffer) => {
-      response.write(dataBuffer);
-      response.end();
-    });
-  } else {
-    if (
-      request.method === "GET" &&
-      (request.url === "/home" ||
-        request.url === "/" ||
-        request.url === "/about" ||
-        request.url === "/contact" ||
-        request.url === "/faq")
-    ) {
-      readFileFunc(`./pages/${filePath}`)
-        .then((dataBuffer) => {
-          response.write(dataBuffer);
-          response.end();
-        })
-        .catch((err) => {
-          console.log(err);
-          response.end('<a href="/home">Home</a>');
-        });
-    } else if (request.url === "/styles") {
-      readFileFunc("./css/style.css").then((dataBuffer) => {
+  const sendFile = (path) => {
+    readFileFunc(path)
+      .then((dataBuffer) => {
         response.write(dataBuffer);
         response.end();
+      })
+      .catch((err) => {
+        response.writeHead(err, 404);
+        response.end(errorPage);
       });
-    } else {
-      readFileFunc("./pages/error.html").then((dataBuffer) => {
-        response.write(dataBuffer);
-        response.end();
-      });
-    }
-  }
+  };
+
+  sendFile(filePath);
 });
 
 const PORT = 270;
