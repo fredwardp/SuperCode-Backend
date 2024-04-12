@@ -1,0 +1,108 @@
+@font-face {
+  font-family: Inter;
+  src: url(/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter;
+  color: var(--text-color);
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+:root {
+  --main-color: #ffd151;
+  --second-color: #165034;
+  --text-color: rgba(0, 0, 0, 0.9);
+}
+
+.container {
+  max-width: 1400px;
+  margin-inline: auto;
+  padding-inline: 3vw;
+}
+
+.btn {
+  border: 2px solid var(--text-color);
+  display: block;
+  width: 188px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  padding-block: 10px;
+}
+
+header {
+  min-height: 100svh;
+  background: url(/img/hero_bg2.png) no-repeat center;
+  background-size: cover;
+}
+
+nav {
+  width: 100%;
+}
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.logo {
+  font-size: 18px;
+  letter-spacing: 11%;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+nav .container div {
+  display: flex;
+  gap: 30px;
+}
+
+nav .container div a {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.hero article {
+  padding-top: 130px;
+}
+
+.subhead {
+  font-size: 23px;
+  letter-spacing: 11%;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-size: 80px;
+  font-weight: 800;
+  letter-spacing: 11%;
+  padding-bottom: 20px;
+}
+
+.herotext {
+  max-width: 50ch;
+  font-size: 17px;
+  letter-spacing: 4%;
+  line-height: 34px;
+  margin-bottom: 50px;
+}
+
+.btn_wrapper {
+  display: flex;
+  gap: 23px;
+}
