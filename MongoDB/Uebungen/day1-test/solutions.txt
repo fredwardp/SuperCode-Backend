@@ -1,0 +1,13 @@
+
+•	PS C:\Users\frede\OneDrive\Desktop\SuperCodeBackend\MongoDB\Uebungen> cd day1-test
+•	PS C:\Users\frede\OneDrive\Desktop\SuperCodeBackend\MongoDB\Uebungen\day1-test> pwd
+•	mongosh "mongodb+srv://mycluster.uvls49u.mongodb.net/" --apiVersion 1 --username newtest
+•	load("loadMovieDetailsDataset.js")
+•	show collections
+•	db.movieDetails.find({director: "Steven Spielberg"}, {title: 1, _id: 0})
+•	db.movieDetails.find({"tomato.userReviews": {$gt: 40000}}, {_id: 0, title: 1, "tomato.userReviews": 1}).sort({"tomato.userReviews": -1}).limit(20)
+•	db.movieDetails.find({year: {$gt: 2000, $lt: 2005}}, {title: 1, year: 1, _id: 0})
+•	db.movieDetails.find({"tomato.userRating": {$gte: 4}, year: {$gt: 2010}}, {title: 1, director: 1, _id: 0})
+•	db.movieDetails.find({"tomato.userRating": {$lt: 1000}, year: {$lt: 2005}}).sort({"tomato.userRating": 1}).limit(10)
+•	db.movieDetails.find({tomato: {$exists: false}})
+•	db.movieDetails.find({"imdb.votes": {$gt: 100,$lt: 1000}}, {title: 1, "imdb.rating": 1, _id: 0})
